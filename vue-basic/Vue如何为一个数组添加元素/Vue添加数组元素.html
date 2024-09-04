@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+<body>
+    <style>
+        .title{
+            border: black 1px ;
+            font-size: 20px;
+            color:aquamarine;
+            font-weight: bold;
+        }
+
+        .sub-title{
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px;
+        }
+
+        .item{
+            font-size: 16px;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 20px;
+            color:cadetblue;
+        }
+    </style>
+    <hr>
+    <br><br>
+    <div id="root">
+        <h2 class="title">{{ name }}</h2>
+        <h3 class="sub-title">--- characteristic</h3>
+        <li class="item" v-for="(item, index) in characteristic" :key="index">{{ item }}</li>
+    </div>
+    <hr>
+    <br><br>
+    <button id="jsAddItem">jsAddButton</button>
+    <br><br>
+    <button id="VueAddItem">VueAddButton</button>
+    <br>
+    <hr>
+    <br><br>
+    <h2 id="jsConclusion"></h2>
+    <h2 id="vueConclusion"></h2>
+    <script type="text/javascript">
+        Vue.config.productionTip = false // 阻止vue在启动时生成生产的提示信息.
+        const vm = new Vue({
+          el: '#root',
+          data: {
+            name: 'vue',
+            characteristic: [
+                'reactive',
+                'simple',
+                // 'performance',
+            ]
+          },
+          // other options
+        });
+
+        const jsButton = document.getElementById('jsAddItem');
+        const vueButton = document.getElementById('VueAddItem');
+        const jsConclusion = document.getElementById('jsConclusion');
+        const vueConclusion = document.getElementById('vueConclusion');
+
+        jsButton.addEventListener('click', function(){
+            vm.characteristic = vm.characteristic.concat('performance')
+        });
+
+        vueButton.addEventListener('click', function(){
+            // alert(vm.characteristic);
+            vm.characteristic.push('performance');
+        })
+    </script>
+</body>
+</html>
