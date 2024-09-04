@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>n的值: {{n}}</h2>
+        <button @click="n++">点我n的值加1</button>
+        <br>
+        <br>
+        <h3>测试v-show的用法</h3>
+        <h2 v-show="n === 1">AngularJS</h2>
+        <h2 v-show="n === 2">React</h2>
+        <h2 v-show="n === 3">Vue</h2>
+        <br>
+        <br>
+        <h3>测试v-if的用法</h3>
+        <h2 v-if="n === 1">AngularJS</h2>
+        <h2 v-if="n === 2">React</h2>
+        <h2 v-if="n === 3">Vue</h2>
+        <br>
+        <br>
+        <h3>测试v-if;v-else-if;v-else用法</h3>
+        <h2 v-if="n === 1">AngularJS</h2>
+        <h2 v-else-if="n === 2">React</h2>
+        <h2 v-else-if="n === 3">Vue</h2>
+        <h2 v-else>none</h2>
+        <br>
+        <br>
+        <h3>测试template的用法</h3>
+        <template v-show="n==1">
+            <h2>AngularJS</h2>
+        </template>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false // 阻止vue在启动时生成生产的提示信息.
+        new Vue({
+          el: '#root',
+          data: {
+            // your data here
+            n: 0
+          },
+          // other options
+        });
+    </script>
+</body>
+</html>

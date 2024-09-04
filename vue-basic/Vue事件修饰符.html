@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初识vue</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <style>
+        *{
+            margin: 20px;
+        }
+        .demo1 {
+            height: 50px;
+            background-color:skyblue;
+        }
+
+        .demo2 .demo3 {
+            padding: 10px;
+        }
+
+        .demo2 {
+            height: 200px;
+            width: 200px;
+            background-color: skyblue;
+        }
+
+        .demo3{
+            height: 100px;
+            width: 100px;
+            background-color: orange;
+        }
+        .self1 {
+            height: 200px;
+            width: 200px;
+            background-color: skyblue;
+        }
+        .self2 {
+            height: 100px;
+            width: 100px;
+            background-color: green;
+        }
+
+        .list{
+            height: 200px;
+            width: 200px;
+            background-color: greenyellow;
+            overflow: auto;
+        }
+        .list > li {
+            background-color: aquamarine;
+            height: 200px;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <!-- --- prevent --- -->
+        <h2>欢迎来到{{name}} 学习</h2>
+        <a href="http://www.baidu.com" @click.prevent="showInfo">点我提示信息</a>
+
+        <!-- 阻止冒泡事件 -->
+         <div class="demo1" @click="showInfo">
+            <button @click.stop="showInfo">点我提示信息</button>
+         </div>
+
+         <!-- 事件只触发一次 -->
+         <button @click.once="showInfo">点我提示信息</button>
+
+         <!-- 捕获模式 -->
+        <div class="demo2" @click.capture="showmsg(1)">
+            div1
+            <div class="demo3" @click="showmsg(2)">
+                div2
+            </div>
+        </div>
+
+        <!-- self模式 -->
+        <div class="self1" @click.self="showself">
+            I am div
+            <button class="self2" @click="showself">I am button</button>
+        </div>
+
+        <!-- passive模式 -->
+        <ul @wheel.passive="showLoop" class="list">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false // 阻止vue在启动时生成生产的提示信息. 
+        new Vue({
+          el: '#root',
+          data: {
+            name: "百度"
+          },
+          methods: {
+            showInfo(e){
+                // e.preventDefault();
+                // e.stopPropagation()
+                alert('Hello loser ...')
+            },
+            showmsg(msg){
+                console.log(msg)
+            },
+            showself(e){
+                alert(e.target.innerText);
+            },
+            showLoop(){
+              for (let i=0;i< 10000; i++) {
+                console.log('#')
+              }
+            }
+          },
+          
+        }); 
+    </script>
+</body>
+</html>

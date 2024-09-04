@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初识vue</title>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+    <style type="text/css">
+        .basic{
+            margin: 200px auto;
+            border:1px solid black;
+            width: 200px;
+            height: 100px;
+            background-color: white;
+            color: black;
+            font-size: 14px;
+        }
+
+        .normal{
+            margin: 200px auto;
+            border:1px solid black;
+            width: 200px;
+            height: 100px;
+            background-color: skyblue;
+            color: black;
+            font-size: 14px;
+            
+        }
+
+        .happy {
+            margin: 200px auto;
+            border:3px solid red;
+            width: 200px;
+            height: 100px;
+            background-color: red;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .sad {
+            margin: 200px auto;
+            border:3px solid blue;
+            width: 200px;
+            height: 100px;
+            background-color: gray;
+            color: black;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="root">
+        <!-- 绑定class样式---字符串写法，适用于: 样式的类名不确定，需要动态指定 -->
+        <div class="basic" :class="className" @click="changeMood">{{name}}</div>
+        <!-- 绑定class样式--数组写法, 适用于: 要绑定的样式个数不确定，名字也不确定 -->
+        <div class="basic" :class="realArr" @click="randomMood">{{name}}</div>
+        <!-- 绑定class样式--对象写法, 适用于: 要绑定的样式个数确定、名字也确定，但要动态确定用不用 -->
+        <div class="basic" :class="classObj" >{{name}}</div>
+
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false // 阻止vue在启动时生成生产的提示信息.  
+        new Vue({
+          el: '#root',
+          data: {
+            name: "Vue",
+            className: "happy",
+            classArr: ['normal', 'happy', 'sad'],
+            realArr: [],
+            classObj: {
+                normal:true,
+                happy:false,
+                sad:false
+            }
+          },
+          methods: {
+            changeMood(){
+                this.className = 'sad';
+            },
+            randomMood(){
+                const number = Math.floor(Math.random() * this.classArr.length);
+                const number2 = Math.floor(Math.random() * this.classArr.length);
+                this.realArr = [ this.classArr[number], this.classArr[number2]]
+                console.log(this.realArr);
+            }
+          },
+          // other options
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>key的原理</title>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <button @click.once="add">点我添加赵六</button>
+        <li v-for="(p, index) in persons" :key="p.id">{{p.name}}-{{p.age}}: <input type="text"></li>
+
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false // 阻止vue在启动时生成生产的提示信息.
+        new Vue({
+          el: '#root',
+          data: {
+            // your data here
+            persons: [
+                {id: '001', name:'zhangsan', age:18},
+                {id: '002', name:'lisi', age:19},
+                {id: '003', name:'wangwu', age:20}
+            ]
+          },
+          methods: {
+            add() {
+                const zl = {id: '004', name: 'zhaoliu', age:21};
+                this.persons.unshift(zl);
+            }
+          },
+          // other options
+        });
+    </script>
+</body>
+</html>

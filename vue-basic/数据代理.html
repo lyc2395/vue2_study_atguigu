@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        let obj = {x: 100};
+        let obj2 = {y: 200};
+        // 现在我想通过obj 操作obj2里面的y
+        Object.defineProperty(
+            obj,
+            'y',
+            {
+            get(){
+                return obj2.y
+            },
+            set(value){
+                obj2.y = value;
+            }
+        })
+
+        // 这时 obj可以对y元素进行读写了
+        console.log(obj.y);
+        obj.y = 300;
+        console.log(obj)
+        console.log(obj2)
+    </script>
+</body>
+</html>

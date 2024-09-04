@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript"  src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+      <h2>name: {{name}}</h2>
+      <h2>adress: {{adress}}</h2>
+    </div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = false;
+    const vm = new Vue({
+      el: '#root',
+      data: {
+        // your data here
+        name: 'len',
+        adress: 'shanghai'
+      },
+      // other options
+    });
+
+</script>
+</html>

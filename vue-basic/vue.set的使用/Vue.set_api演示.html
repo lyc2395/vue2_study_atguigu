@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click Event Example</title>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>Click Event Example</h2>
+        <button id="jsAddButton">Use JS to Add Property</button>
+        <button id="apiAddButton">Use Vue API to Add Property</button>
+        <h3>Properties</h3>
+        <ul>
+            <li v-for="(val, key) in properties" :key="key">{{ key }}: {{ val }}</li>
+        </ul>
+        <hr>
+        <pre>{{ properties }}</pre>
+        <br>
+        <h3 v-if="jsAddVal">JS Add Result: Characteristic not added yet</h3>
+        <h3 v-if="apiAddVal">Vue API Add Result: Characteristic not added yet</h3>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                properties: {
+                    type: "javascripts",
+                    ranking: "first"
+                }
+            },
+            jsAddVal: false,
+            apiAddVal: false
+        });
+
+        // 获取 DOM 元素
+        const jsAddButton = document.getElementById('jsAddButton');
+        const apiAddButton = document.getElementById('apiAddButton');
+
+        // 使用原生 JavaScript 添加点击事件
+        jsAddButton.addEventListener('click', function() {
+            vm.properties.characteristic = "reactive";
+            alert(vm.jsAddVal)
+            vm.jsAddVal = true;
+            alert(vm.jsAddVal)
+        });
+
+        apiAddButton.addEventListener('click', function() {
+            Vue.set(vm.properties, 'characteristic', 'reactive');
+            vm.apiAddVal = true;
+        });
+
+    </script>
+</body>
+</html>
