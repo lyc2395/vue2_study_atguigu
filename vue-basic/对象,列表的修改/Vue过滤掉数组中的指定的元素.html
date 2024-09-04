@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>{{ name }}</h2>
+        <button @click="filterItem">Filter Item</button><input type="text" :value="name" placeholder="Please input a item ...">
+        <li v-for="(item, index) in characteristic" :key="index">{{ item }}</li>
+        
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false // 阻止vue在启动时生成生产的提示信息.
+        new Vue({
+          el: '#root',
+          data: {
+            name: 'vue',
+            characteristic: [
+              'reactive',
+              'simple',
+              'high performance'
+            ]
+            // your data here
+          },
+          // other options
+        });
+    </script>
+</body>
+</html>
