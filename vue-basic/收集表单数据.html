@@ -29,7 +29,7 @@
                 <option value="shenzhen">shenzhen</option>
               </select><br><br>
             Other informations:
-              <textarea name="other" v-model="other"></textarea><br><br>
+              <textarea name="other" v-model.lazy="other"></textarea><br><br>
             <input type="checkbox" v-model="agree" required>Read and accept the <a href="http://www.baidu.com">user agreement</a><br><br>
             <input @click.prevent="sendMsg" type="submit">
         </form>
