@@ -8,6 +8,7 @@
 </head>
 <body>
     <div id="root">
+        n的初始值<input type="text" v-model="n">
         <h2 v-big="n"></h2>
     </div>
     <script type="text/javascript">
@@ -20,8 +21,7 @@
           },
           directives: {
             big(element,binding){
-                element.value = `n将会被放大10倍: ${binding.value * 10}`
-                element.value = binding.value * 10
+                element.textContent = `n将会被放大10倍: ${binding.value * 10}`
                 console.log(element.value)
                 console.log(binding.value)
             }
