@@ -1,15 +1,17 @@
 <template>
     <div>
       <commonAdvantage/>
+      <br><br>
       <h3>{{front_name}} advantages</h3>
       <ul>
         <li v-for="(item, index) in advantages" :key="index">{{ item }}</li>
       </ul>
-      <hr>
+      <br><br>
       <h3>{{ front_name }} defects</h3>
       <ul>
         <li v-for="(item, index) in defects" :key="index">{{ item }}</li>
       </ul>
+      <br><br>
     </div>
 </template>
 
@@ -31,9 +33,20 @@ export default {
                 'Complex configuration',
                 'Learning response ecosystem is complex'
             ],
-            angular_advantages: [],
-            angular_defects: [],
-            front_name: this.name
+            angular_advantages: [
+                'Bidirectional data binding',
+                'MVC framework',
+                'Rich built-in features'
+            ],
+            angular_defects: [
+                'learning difficulty',
+                'stop updating',
+                'Poor performance'
+            ],
+            front_name: this.name,
+            react_level: 2,
+            angular_level: 1
+
         }
     },
     components: {
