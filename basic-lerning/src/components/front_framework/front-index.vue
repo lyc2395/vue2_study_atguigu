@@ -1,13 +1,16 @@
 <template>
-    <commonAdvantage/>
+    <characteristic name="React"/>
+    <hr>
+    <characteristic name="React"/>
+    <!-- <characteristic name="AngularJS"/> -->
 </template>
 
 <script>
-import commonAdvantage from './common/common-advantage'
+import characteristic from './common/characteristic.vue'
 export default {
     name: 'front-index',
     components: {
-        commonAdvantage
+        characteristic
     }
 }
 </script>

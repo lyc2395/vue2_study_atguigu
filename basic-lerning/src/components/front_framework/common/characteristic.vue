@@ -14,9 +14,9 @@
 </template>
 
 <script>
-import commonAdvantage from '../common/common-advantage.vue'
+import commonAdvantage from './common-advantage.vue'
 export default {
-    name: 'reactadvantage',
+    name: 'characteRistic',
     data() {
         return {
             react_advantages: [
@@ -46,10 +46,23 @@ export default {
         }
     },
     computed: {
-        front_name:{
-            if (front_name === 'react'){
-                
-            } 
+        advantages(){
+            if(this.front_name === 'React'){
+                return this.react_advantages
+            }else if(this.front_name === 'AngularJS'){
+                return this.angular_advantages;
+            }else{
+                return [`Unknow name: ${this.front_name}`]
+            }
+        },
+        defects(){
+            if(this.front_name === 'React'){
+                return this.react_defects;
+            }else if(this.front_name === 'AngularJS'){
+                return this.angular_defects;
+            }else{
+                return [`Unknow name: ${this.front_name}`]
+            }
         }
     }
 }
