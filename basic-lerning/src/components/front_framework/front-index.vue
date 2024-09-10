@@ -1,8 +1,11 @@
 <template>
-    <characteristic name="React"/>
-    <hr>
-    <characteristic name="React"/>
-    <!-- <characteristic name="AngularJS"/> -->
+    <div>
+        <characteristic name="React"/>
+        <hr>
+        <characteristic name="AngularJS"/>
+    </div>
+    
+
 </template>
 
 <script>
