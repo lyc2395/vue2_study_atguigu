@@ -1,7 +1,11 @@
 <template>
     <div>
-        <h1 ref="title" id="titles">欢迎学习Vue框架</h1>
-        <button @click="showRef">点我测试ref属性</button>
+        <h1>测试插件</h1>
+        <h2 ref="title" id="titles">{{ title | splitString(5) }}</h2>
+        <button @click="showRef">点我测试ref属性</button><br>
+        <input type="text" v-fbind:value="input_value"><br>
+        <button @click="hello">点我测试插件原型方法hello</button>
+        
         <br><br>
         <h2>name: React</h2>
         <h2>level: 2</h2>
@@ -22,6 +26,7 @@
 
 <script>
 import { computed } from 'vue';
+import mixin from '../../mixin'
 import characteristic from './common/characteristic.vue'
 export default {
     name: 'front-index',
@@ -56,14 +61,8 @@ export default {
                 this.angular_show = true;
                 this.angular_action = this.closeInfo;
             }
-        },
-        showRef(){
-            // console.log(this.$refs.title)
-            const ObjectTitle =  this.$refs.title
-            const ObjectById = document.getElementById('titles')
-            console.log(`I am ${ObjectTitle}`)
-            console.log(`this.$refs.title 恒等于 document.getElementById('titles')`)
         }
-    }
+    },
+    mixins: [mixin]
 }
 </script>
