@@ -1,15 +1,31 @@
 <template>
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-    <div class="todoTitle">
-      <input class="addTodos" type="text" placeholder="请输入待办事项点击回车将它添加到列表中...">
-    </div>
-    <div class="TodoList">
-        <div class="TodoItem">
-          <input type="checkbox">打代码
+     <div class="todo-container">
+      <div class="todo-wrap">
+        <div class="todo-header">
+          <input type="text" placeholder="请输入待办事项点击回车将它添加到列表中...">
         </div>
-    </div>
-  </div>
+        <ul class="todo-list">
+          <li>
+            <label>
+              <input type="checkbox">
+              <span>xxxx</span>
+            </label>
+            <button class="btn btn-danger" style="display: none;">删除</button>
+          </li>
+          <li>
+            <input type="checkbox">
+            <span>xxxx</span>
+          </li>
+        </ul>
+        <div class="todo-footer">
+
+        </div>
+      </div>
+
+     </div>
+  </div> 
 </template>
 
 <script>
