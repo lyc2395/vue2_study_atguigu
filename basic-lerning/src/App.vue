@@ -1,28 +1,30 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <frontIndex/>
+    <div>
+      <input type="text" placeholder="请输入待办事项点击回车将它添加到列表中...">
+    </div>
   </div>
 </template>
 
 <script>
-import frontIndex from './components/front_framework/front-index'
 
 export default {
   name: 'App',
   components: {
-    frontIndex
   }
 }
 </script>
 
-<!-- <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style>
+#app{
+      width: 200px;
+      height: 200px;
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+      margin: 50px auto;
 }
-</style> -->
+
+
+</style>
