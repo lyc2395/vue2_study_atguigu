@@ -15,12 +15,21 @@
             <button class="btn btn-danger" style="display: none;">删除</button>
           </li>
           <li>
-            <input type="checkbox">
-            <span>xxxx</span>
+            <label>
+              <input type="checkbox">
+              <span>xxxx</span>
+            </label>
           </li>
+          <button class="btn btn-danger" style="display: none;">删除</button>
         </ul>
         <div class="todo-footer">
-
+          <label>
+            <input type="checkbox">
+          </label>
+          <span>
+            <span>已完成0</span> / 全部2
+          </span>
+          <button  class="btn btn-danger">清除已完成任务</button>
         </div>
       </div>
 
@@ -38,7 +47,7 @@ export default {
 </script>
 
 <style lang="scss">
-#app{
+.todo-container{
       width: 1000px;
       height: 1000px;
       background-color: #f4f7f4;
@@ -46,9 +55,10 @@ export default {
       box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
       margin: 50px auto;
       padding: 50px;
-      .todoTitle{
+      .todo-header{
         padding: 0px;
-        .addTodos{
+        input{
+            box-sizing: border-box;
             width: 100%;
             height: 30px;
             // margin: 30px 30px;
@@ -57,13 +67,19 @@ export default {
         }
       }
       
-      .TodoList{
+      .todo-list{
         width: 100%;
-        border: 1px solid #f1eaea;
-        .TodoItem{
-          width: 100%;
-          
+        border: 1px solid rgba(0, 0, 0, 0.742);
+        margin: 20px 0px;
+        padding: 0px;
+        li{
+          margin: 10px;
+          label{
+            width: 100%;
+            box-sizing: border-box;
         }
+        }
+        
       }
 }
 
