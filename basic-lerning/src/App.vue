@@ -1,8 +1,8 @@
 <template>
   <div id="app" class="todo-container">
     <todoHeader :addNewItem="addNewItem"/>
-    <todoList/>
-    <todoFooter/>
+    <todoList :todoItems="todoItems" :changeStatus="changeStatus" :deleteTodo="deleteTodo"/>
+    <todoFooter :todoItems="todoItems" :doneTotal="doneTotal" :checkAllTodo="checkAllTodo" :clearAllDone="clearAllDone"/>
   </div> 
 </template>
 
@@ -15,16 +15,48 @@ export default {
   data() {
     return {
       todoItems: [
-        {id: '001', name: '抽烟', isDone: false},
+        {id: '001', name: '抽烟', isDone: true},
         {id: '002', name: '喝酒', isDone: false},
-        {id: '003', name: '烫头', isDone: false}
+        {id: '003', name: '烫头', isDone: true}
       ]
     }
   },
   methods: {
     addNewItem(newItem){
       this.todoItems.unshift(newItem)
-      console.log(this.todoItems)
+    },
+    changeStatus(id){
+      this.todoItems.forEach(element => {
+        if (element.id == id){
+          element.isDone = !element.isDone
+        }
+      });
+    },
+    deleteTodo(id){
+      if (confirm('确定删除吗?')){
+        console.log(id)
+        this.todoItems = this.todoItems.filter((todo) => {
+          return todo.id !== id 
+        })
+      }
+    },
+    checkAllTodo(done){
+      this.todoItems.forEach(
+        (todo) => todo.isDone = done
+      )
+    },
+    clearAllDone(){
+      if (confirm('确定要清除所有已完成任务吗?')){
+        this.todoItems = this.todoItems.filter(
+          (todo) => !todo.isDone
+        )
+      }
+      // console.log('clearAllDone OK')
+    }
+  },
+  computed:{
+    doneTotal(){
+      return this.todoItems.reduce((accumulator, currentValue) => accumulator + (currentValue.isDone ? 1 : 0 ), 0)
     }
   },
   components: {
@@ -33,6 +65,7 @@ export default {
     todoFooter
   }
 }
+
 </script>
 
 <style lang="scss">
