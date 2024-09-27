@@ -21,13 +21,11 @@ export default {
             name: this.initItem,
             isDone: false
             }
-        this.addNewItem(newItem)
+        this.$emit('addNewItem', newItem)
+        // this.addNewItem(newItem)
         this.initItem = ""
       }
-    },
-    props: [
-        'addNewItem'
-    ]
+    }
 }
 </script>
 

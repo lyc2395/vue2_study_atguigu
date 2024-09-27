@@ -23,11 +23,13 @@ export default {
     methods: {
       deleteDone(){
         // console.log('ssss', this.clearAllDone)
-        this.clearAllDone()
+        // this.clearAllDone()
+        this.$emit('clearAllDone')
       },
       checkAll(e){
         // console.log(e.target.checked)
-        this.checkAllTodo(e.target.checked)
+        this.$emit('checkAllTodo', e.target.checked)
+        // this.checkAllTodo(e.target.checked)
       }
     },
     computed: {
@@ -40,7 +42,8 @@ export default {
         },
         set(value){
           console.log('*****', value)
-          this.checkAllTodo(value)
+          // this.checkAllTodo(value)
+          this.$emit('checkAllTodo', value)
         }
       }
     }

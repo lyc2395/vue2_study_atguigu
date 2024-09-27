@@ -1,8 +1,8 @@
 <template>
   <div id="app" class="todo-container">
-    <todoHeader :addNewItem="addNewItem"/>
+    <todoHeader @addNewItem="addNewItem"/>
     <todoList :todoItems="todoItems" :changeStatus="changeStatus" :deleteTodo="deleteTodo"/>
-    <todoFooter :todoItems="todoItems" :doneTotal="doneTotal" :checkAllTodo="checkAllTodo" :clearAllDone="clearAllDone"/>
+    <todoFooter :todoItems="todoItems" :doneTotal="doneTotal" @checkAllTodo="checkAllTodo" @clearAllDone="clearAllDone"/>
   </div> 
 </template>
 
@@ -14,16 +14,13 @@ export default {
   name: 'App',
   data() {
     return {
-      todoItems: [
-        {id: '001', name: '抽烟', isDone: true},
-        {id: '002', name: '喝酒', isDone: false},
-        {id: '003', name: '烫头', isDone: true}
-      ]
+      todoItems: JSON.parse(localStorage.getItem('todos')) || []
     }
   },
   methods: {
     addNewItem(newItem){
       this.todoItems.unshift(newItem)
+      // localStorage.setItem('todos', JSON.stringify(this.todoItems))
     },
     changeStatus(id){
       this.todoItems.forEach(element => {
@@ -57,6 +54,14 @@ export default {
   computed:{
     doneTotal(){
       return this.todoItems.reduce((accumulator, currentValue) => accumulator + (currentValue.isDone ? 1 : 0 ), 0)
+    }
+  },
+  watch: {
+    todoItems: {
+      deep: true,
+      handler(value){
+        localStorage.setItem('todos', JSON.stringify(value))
+      }
     }
   },
   components: {
