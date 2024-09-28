@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="todo-container">
     <todoHeader @addNewItem="addNewItem"/>
-    <todoList :todoItems="todoItems" :changeStatus="changeStatus" :deleteTodo="deleteTodo"/>
+    <todoList :todoItems="todoItems"/>
     <todoFooter :todoItems="todoItems" :doneTotal="doneTotal" @checkAllTodo="checkAllTodo" @clearAllDone="clearAllDone"/>
   </div> 
 </template>
@@ -68,7 +68,14 @@ export default {
     todoHeader,
     todoList,
     todoFooter
-  }
+  },
+  mounted() {
+    this.$bus.$on('changeStatus', this.changeStatus);
+    this.$bus.$on('deleteTodo', this.deleteTodo);
+  },
+  beforeDestroy() {
+    this.$bus.$off(['changeStatus', 'deleteTodo'])
+  },
 }
 
 </script>

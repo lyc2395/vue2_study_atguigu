@@ -15,16 +15,16 @@ export default {
     name: 'todoItem',
     props: [
         'thing',
-        'changeStatus',
-        'deleteTodo'
     ],
     methods: {
         todoChecked(id){
             // console.log(this.thing.id)
-            this.changeStatus(id)
+            // this.changeStatus(id)
+            this.$bus.$emit('changeStatus', id)
         }, 
         deleteItem(id){
-            this.deleteTodo(id)
+            // this.deleteTodo(id)
+            this.$bus.$emit('deleteTodo', id)
         }
     }
 }
