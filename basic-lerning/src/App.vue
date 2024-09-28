@@ -23,6 +23,14 @@ export default {
       this.todoItems.unshift(newItem)
       // localStorage.setItem('todos', JSON.stringify(this.todoItems))
     },
+    updateTodo(id, value){
+      // console.log('app received: ', id, value)
+      this.todoItems.forEach(element => {
+        if (element.id == id){
+          element.name = value
+        }
+      });
+    },
     changeStatus(id){
       this.todoItems.forEach(element => {
         if (element.id == id){
@@ -73,6 +81,7 @@ export default {
   mounted() {
     this.$bus.$on('changeStatus', this.changeStatus);
     // this.$bus.$on('deleteTodo', this.deleteTodo);
+    this.$bus.$on('updateTodo', this.updateTodo);
     this.pid = pubsub.subscribe('deleteTodo', this.deleteTodo);
 
   },

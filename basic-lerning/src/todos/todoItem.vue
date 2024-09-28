@@ -3,8 +3,14 @@
       <li>
         <label>
           <input type="checkbox" :checked="thing.isDone" @change="todoChecked(thing.id)">
-          <span>{{thing.name}}</span>
+          <span v-show="!thing.isEdit">{{thing.name}}</span>
+          <input v-show="thing.isEdit" 
+          @blur="handleBlur(thing, $event)" 
+          :value="thing.name"
+          ref="getBlur"
+          type="text">
         </label>
+        <button class="btn btn-edit" v-show="!thing.isEdit" @click="inputThing(thing, $event)">编辑</button>
         <button class="btn btn-danger" @click="deleteItem(thing.id)">删除</button>
       </li>
     </div>
@@ -27,6 +33,25 @@ export default {
             // this.deleteTodo(id)
             // this.$bus.$emit('deleteTodo', id)
             pubsub.publish('deleteTodo', id)
+        },
+        inputThing(thing, e){
+          if(thing.hasOwnProperty('isEdit')){
+            thing.isEdit = true
+          }else{
+            console.log('首次添加isEdit属性')
+            this.$set(thing, 'isEdit', true)
+          }
+          this.$nextTick(function(){
+            this.$refs.getBlur.focus()
+          })
+        },
+        handleBlur(todo, e){
+          // console.log('updateTodo', todo.id, e.target.value)
+          if(!e.target.value.trim()){
+            return alert('输入框不能为空')
+          }
+          this.$bus.$emit('updateTodo', todo.id, e.target.value)
+          todo.isEdit = false
         }
     }
 }
@@ -59,6 +84,11 @@ export default {
         border: 1px solid rgba(255, 0, 0, 0.966) ;
         padding: 5px;
         font-weight: bold;
+        margin-right: 5px;
+    }
+    .btn-edit {
+      background-color: rgb(33, 18, 237);
+      border: 1px solid rgb(2, 3, 74)
     }
   }
     li:hover .btn{
