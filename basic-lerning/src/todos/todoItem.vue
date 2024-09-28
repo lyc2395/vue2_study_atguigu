@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import pubsub from 'pubsub-js'
 export default {
     name: 'todoItem',
     props: [
@@ -24,7 +25,8 @@ export default {
         }, 
         deleteItem(id){
             // this.deleteTodo(id)
-            this.$bus.$emit('deleteTodo', id)
+            // this.$bus.$emit('deleteTodo', id)
+            pubsub.publish('deleteTodo', id)
         }
     }
 }

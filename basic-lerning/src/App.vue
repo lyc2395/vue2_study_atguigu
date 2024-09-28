@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import pubsub from 'pubsub-js'
 import todoHeader from './todos/todoHeader.vue'
 import todoList from './todos/todoList.vue'
 import todoFooter from './todos/todoFooter.vue'
@@ -29,7 +30,7 @@ export default {
         }
       });
     },
-    deleteTodo(id){
+    deleteTodo(_, id){
       if (confirm('确定删除吗?')){
         console.log(id)
         this.todoItems = this.todoItems.filter((todo) => {
@@ -71,10 +72,14 @@ export default {
   },
   mounted() {
     this.$bus.$on('changeStatus', this.changeStatus);
-    this.$bus.$on('deleteTodo', this.deleteTodo);
+    // this.$bus.$on('deleteTodo', this.deleteTodo);
+    this.pid = pubsub.subscribe('deleteTodo', this.deleteTodo);
+
   },
   beforeDestroy() {
-    this.$bus.$off(['changeStatus', 'deleteTodo'])
+    // this.$bus.$off(['changeStatus', 'deleteTodo'])
+    this.$bus.$off('changeStatus');
+    pubsub.unsubscribe(this.pid);
   },
 }
 
