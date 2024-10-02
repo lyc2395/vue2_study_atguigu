@@ -28,6 +28,7 @@ export default {
                     // console.log(response.data);
                     this.isShowResult = true;
                     this.accessResult = `url: ${git_url}, 请求成功了`
+                    this.keyword = ""
                     // this.users = response.data.items
                     this.$bus.$emit('users', response.data.items)
                 },

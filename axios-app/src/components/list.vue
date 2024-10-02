@@ -19,6 +19,7 @@ export default {
     },
     methods: {
         getUsers(users){
+            this.users = [];
             users.forEach(element => {
                 let user_object = {
                     id: element.id,
