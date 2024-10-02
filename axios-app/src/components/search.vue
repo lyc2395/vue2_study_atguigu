@@ -4,6 +4,8 @@
         <input v-model="keyword" type="text" placeholder="请输入关键字...">
         <button @click="getUsers()">Search</button>
         <h3 v-show="isShowResult">{{ accessResult }}</h3>
+        <h1 v-show="isLoading">Loading ...</h1>
+        
     </div>
 </template>
 
@@ -14,29 +16,37 @@ export default {
     data() {
         return {
             users: [],
-            keyword: "",
+            keyword: "李大娟",
             isShowResult: false,
             accessResult: "",
+            isLoading: false,
         }
     },
     methods: {
         getUsers(){
+            this.isLoading = true
+            this.users = []
             let git_url = `http://localhost:8080/github-api/search/users?q=${this.keyword}`
             axios.get(git_url).then(
                 response => {
                     console.log('请求成功了');
-                    // console.log(response.data);
+                    this.isLoading = false
                     this.isShowResult = true;
                     this.accessResult = `url: ${git_url}, 请求成功了`
+                    this.$bus.$emit('users', response.data.items, this.keyword)
                     this.keyword = ""
-                    // this.users = response.data.items
-                    this.$bus.$emit('users', response.data.items)
+                    setTimeout(() => {
+                        this.isShowResult = false
+                    }, 3000);
+
                 },
                 error => {
                     console.log('请求失败了');
                     console.log('失败的原因是: ', error.message)
+                    this.isLoading = false
                     this.isShowResult = true;
                     this.accessResult = `url: ${git_url}, 请求失败了.\n\n失败的原因是: ${error.message}`
+                    this.$bus.$emit('users', [], this.keyword)
                 }
             )
         }

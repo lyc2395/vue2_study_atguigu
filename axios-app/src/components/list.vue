@@ -1,12 +1,14 @@
 <template>
-  <div id="list">
-    <ul class="list-items" >
-        <li v-for="user in users" :key="user.id">
-            <img :src="user.avatar_url" alt="图片不存在">
-            <h5>{{ user.name }}</h5>
-        </li>
-    </ul>
-  </div>    
+   <div>
+      <div id="list">
+          <a v-for="user in users" :key="user.id" :href="user.html_url" target="_blank">
+              <img :src="user.avatar_url" alt="图片不存在">
+              <p>{{ user.login }}</p>
+          </a>
+      </div>    
+      <h1 v-show="isNull">No username like "keyword={{ keyword }}" were found in the GitHub</h1>
+   </div>
+  
 </template>
 
 <script>
@@ -15,20 +17,22 @@ export default {
     data() {
         return {
             users: [],
+            isNull: false,
+            keyword: ""
         }
     },
     methods: {
-        getUsers(users){
-            this.users = [];
-            users.forEach(element => {
-                let user_object = {
-                    id: element.id,
-                    name: element.login,
-                    avatar_url: element.avatar_url
-                }
-                this.users.push(user_object);
-            });
-            // console.log(this.users)
+        getUsers(users, ...params){
+            this.keyword = params[0]
+            this.isNull = false
+            if (users.length == 0){
+                this.users = []
+                this.isNull = true
+            }else{
+                this.users = [];
+                this.users = users
+            }
+            // console.log(users)
         }
     },
     mounted() {
@@ -43,32 +47,29 @@ export default {
     background-color: rgb(190, 230, 192);
     margin: 20px;
     height: auto;
-    .list-items {
-        display: grid;  
-        grid-template-columns: repeat(3, 1fr); /* 定义三列，每列等宽 */  
-        grid-gap: 10px; /* 网格间隙，包括列间隙和行间隙 */  
-        list-style: none; /* 移除列表项前的标记 */  
-        padding: 0; /* 移除默认的padding */  
-        margin: 0; /* 移除默认的margin */ 
-        li{
-            padding: 10px; /* 内边距 */  
-            box-sizing: border-box; /* 确保padding和border不会增加元素的宽度 */
-            border: 1px solid black
-            img{
-                width: 80%;
-                margin: 5px;
-                height: 70%;
-                object-fit: cover;
-            }
-            h5{
-                width: 20%;
-                height: 20%;
-                font-size: 14px;
-                font-weight: bold;
-                text-align: center;
-                color: black;
-                display: inline-block;
-            }
+    display: grid;  
+    grid-template-columns: repeat(3, 1fr); /* 定义三列，每列等宽 */  
+    grid-gap: 10px; /* 网格间隙，包括列间隙和行间隙 */  
+    // list-style: none; /* 移除列表项前的标记 */  
+    padding: 0px; /* 移除默认的padding */  
+    a{
+        padding: 10px; /* 内边距 */  
+        text-decoration: none;
+        display: block;
+        box-sizing: border-box; /* 确保padding和border不会增加元素的宽度 */
+        border: 1px solid black
+        img{
+            width: 20px;
+            height: 20px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        p{
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            color: black;
+            display: inline-block;
         }
     }
 }
