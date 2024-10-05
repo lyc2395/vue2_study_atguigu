@@ -21,7 +21,15 @@
       <el-container>
         <el-aside width="200px">
         <el-scrollbar>
-          <el-menu :default-openeds="['1', '3']" style="background-color: #E5EAF3">
+          <el-menu :default-openeds="['1', '4']" style="background-color: #E5EAF3">
+            <el-sub-menu index="4" >
+              <router-link :to="{name: 'Home'}">
+                <el-menu-item index="4-1" style="background-color: #E5EAF3">
+                  <el-icon><icon-menu /></el-icon>
+                  <span>主页</span>
+                </el-menu-item>
+              </router-link>
+            </el-sub-menu>
             <el-sub-menu index="1">
               <template #title>
                 <el-icon><message /></el-icon>路由测试页面
@@ -29,7 +37,7 @@
               <el-menu-item-group style="background-color: #E5EAF3">
                 <!-- <template #title>Group 1</template> -->
                 <router-link :to="{name: 'page2'}">
-                  <el-menu-item index="1-1">简单指向一个路由</el-menu-item>
+                  <el-menu-item index="1-1" :router="true">指向一个最基础的路由</el-menu-item>
                 </router-link>
                 <el-menu-item index="1-2">Option 2</el-menu-item>
                 <el-menu-item index="1-3">Option 3</el-menu-item>
