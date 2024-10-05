@@ -1,12 +1,17 @@
 import Vue from 'vue'
 import App from './App.vue'
+import VueRouter from 'vue-router'
+
+
+Vue.config.productionTip = false
+Vue.use(VueRouter)
 
 // 引入VueRouter
 import router from './router'
 
-Vue.config.productionTip = false
+console.log('Router打印出来, ', router)
 
 new Vue({
-  router, //注册路由
   render: h => h(App),
+  router //注册路由
 }).$mount('#app')
