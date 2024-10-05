@@ -3,10 +3,9 @@ import routePage1 from '../views/router_page1.vue'
 import routePage2 from '../views/router_page2.vue'
 const routes = [
     {
-        name: 'page1',
-        path: '/page1',
+        name: 'Home',
+        path: '/',
         component: routePage1
-
     },
     {
         name: 'page2',
