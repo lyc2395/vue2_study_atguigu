@@ -1,10 +1,10 @@
-import './assets/main.css'
+// import './assets/main.css'
 
 import { createApp } from 'vue'
 
 // 引入element-ui 组件
-import ElementPlus from 'element-plus'
-import 'element-plus/dist/index.css'
+// import ElementPlus from 'element-plus'
+// import 'element-plus/dist/index.css'
 
 // 引入router组件
 import router from './router'
@@ -15,7 +15,7 @@ import App from './App.vue'
 const app = createApp(App)
 
 // 应用element-ui插件
-app.use(ElementPlus)
+// app.use(ElementPlus)
 // 应用router组件
 app.use(router)
 

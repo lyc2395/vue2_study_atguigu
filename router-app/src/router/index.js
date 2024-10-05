@@ -1,6 +1,8 @@
 import VueRouter from 'vue-router'
+import Vue from 'vue'
 import son from '../pages/son.vue'
 
+Vue.use(VueRouter)
 const routes = [
     {
         path: '/son',
