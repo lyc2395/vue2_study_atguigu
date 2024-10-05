@@ -1,5 +1,14 @@
-// 引入的不再是Vue构造函数了, 引入的是一个名为createApp的工厂函数
+// import './assets/main.css'
+
 import { createApp } from 'vue'
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+
 import App from './App.vue'
-// 创建应用实例对象--app(类似之前Vue2中的vm, 但app比vm更轻)
-createApp(App).mount('#app')
+import router from './router'
+
+const app = createApp(App)
+
+app.use(router)
+app.use(ElementPlus)
+app.mount('#app')
