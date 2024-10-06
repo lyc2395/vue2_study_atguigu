@@ -21,7 +21,7 @@
       <el-container>
         <el-aside width="200px">
           <el-scrollbar>
-            <el-menu :default-openeds="['1', '4']" style="background-color: #E5EAF3">
+            <el-menu :default-openeds="['1', '5']" style="background-color: #E5EAF3">
               <router-link :to="{name: 'Home'}">
                 <el-menu-item index="4-1" style="background-color: #E5EAF3">
                   <el-icon><icon-menu /></el-icon>
@@ -38,12 +38,28 @@
                   <el-menu-item index="1-1" :router="true">指向一个最基础的路由</el-menu-item>
                 </router-link>
                 <router-link :to="{name: 'page3'}">
-                  <el-menu-item index="1-2">page3</el-menu-item>
+                  <el-menu-item index="1-2">多级路由</el-menu-item>
                 </router-link>
-                <el-menu-item index="1-3">Option 3</el-menu-item>
+                <router-link :to="{name: 'props'}">
+                  <el-menu-item index="1-3">路由的props设置</el-menu-item>
+                </router-link>
                 <el-sub-menu index="1-4">
-                  <template #title>Option4</template>
-                  <el-menu-item index="1-4-1">Option 4-1</el-menu-item>
+                  <template #title>编程式路由</template>
+                  <router-link :to="{name: 'programPush'}">
+                    <el-menu-item index="1-4-1">编程式路由push</el-menu-item>
+                  </router-link>
+                  <router-link :to="{name: 'programReplace'}">
+                    <el-menu-item index="1-4-2">编程式路由replace</el-menu-item>
+                  </router-link>
+                </el-sub-menu>
+                <el-sub-menu index="1-5">
+                  <template #title>缓存式路由</template>
+                  <router-link :to="{name: 'cache'}">
+                    <el-menu-item index="1-5-1">练习缓存式路由</el-menu-item>
+                  </router-link>
+                  <router-link :to="{name: 'Home'}">
+                    <el-menu-item index="1-5-2">缓存式路由的两个生命周期钩子</el-menu-item>
+                  </router-link>
                 </el-sub-menu>
               </el-menu-item-group>
             </el-sub-menu>

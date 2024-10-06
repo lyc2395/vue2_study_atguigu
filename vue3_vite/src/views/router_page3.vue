@@ -1,70 +1,63 @@
 <template>
-    <el-radio-group v-model="isCollapse" style="margin-bottom: 20px">
-      <el-radio-button :value="false">expand</el-radio-button>
-      <el-radio-button :value="true">collapse</el-radio-button>
-    </el-radio-group>
-    <el-menu
-      default-active="2"
-      class="el-menu-vertical-demo"
-      :collapse="isCollapse"
-      @open="handleOpen"
-      @close="handleClose"
-    >
-      <el-sub-menu index="1">
-        <template #title>
-          <el-icon><location /></el-icon>
-          <span>Navigator One</span>
-        </template>
-        <el-menu-item-group>
-          <template #title><span>Group One</span></template>
-          <el-menu-item index="1-1">item one</el-menu-item>
-          <el-menu-item index="1-2">item two</el-menu-item>
-        </el-menu-item-group>
-        <el-menu-item-group title="Group Two">
-          <el-menu-item index="1-3">item three</el-menu-item>
-        </el-menu-item-group>
-        <el-sub-menu index="1-4">
-          <template #title><span>item four</span></template>
-          <el-menu-item index="1-4-1">item one</el-menu-item>
-        </el-sub-menu>
-      </el-sub-menu>
-      <el-menu-item index="2">
-        <el-icon><icon-menu /></el-icon>
-        <template #title>Navigator Two</template>
-      </el-menu-item>
-      <el-menu-item index="3" disabled>
-        <el-icon><document /></el-icon>
-        <template #title>Navigator Three</template>
-      </el-menu-item>
-      <el-menu-item index="4">
-        <el-icon><setting /></el-icon>
-        <template #title>Navigator Four</template>
-      </el-menu-item>
-    </el-menu>
-  </template>
-  
-  <script lang="ts" setup>
-  import { ref } from 'vue'
-  import {
-    Document,
-    Menu as IconMenu,
-    Location,
-    Setting,
-  } from '@element-plus/icons-vue'
-  
-  const isCollapse = ref(true)
-  const handleOpen = (key: string, keyPath: string[]) => {
-    console.log(key, keyPath)
-  }
-  const handleClose = (key: string, keyPath: string[]) => {
-    console.log(key, keyPath)
-  }
-  </script>
-  
-  <style>
-  .el-menu-vertical-demo:not(.el-menu--collapse) {
-    width: 200px;
-    min-height: 400px;
-  }
-  </style>
-  
+  <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
+    <el-tab-pane label="一个简单的多级路由" name="first">
+      <router-link :to="{name: 'mutiLevel'}" class="blank_space">展开</router-link>
+      <router-link :to="{name: 'page3'}" class="blank_space">收回</router-link>
+      <router-view></router-view>
+    </el-tab-pane>
+    <el-tab-pane label="带有requery的参数的路由" name="second">
+      <router-link 
+        :to="
+          {
+            name: 'query',
+            query: {
+              id: 666,
+              title: 'query',
+              status: 'Green'
+            }
+
+          }" 
+        class="blank_space"
+        >展开</router-link>
+      <router-link :to="{name: 'page3'}" class="blank_space">收回</router-link>
+      <router-view></router-view>
+    </el-tab-pane>
+    <el-tab-pane label="带有params的路由" name="third">
+      <router-link 
+      :to="{
+        name: 'params',
+        params: {
+          id: 666,
+          title: 'parameters',
+          status: 'Green'
+        }
+      }" 
+      class="blank_space">展开</router-link>
+      <router-link :to="{name: 'page3'}" class="blank_space">收回</router-link>
+      <router-view></router-view>
+    </el-tab-pane>
+    <el-tab-pane label="Task" name="fourth">Task</el-tab-pane>
+  </el-tabs>
+</template>
+<script lang="ts" setup>
+import { ref } from 'vue'
+import type { TabsPaneContext } from 'element-plus'
+
+const activeName = ref('first')
+
+const handleClick = (tab: TabsPaneContext, event: Event) => {
+  console.log(tab, event)
+}
+</script>
+
+<style>
+.demo-tabs > .el-tabs__content {
+  padding: 32px;
+  color: #6b778c;
+  font-size: 32px;
+  font-weight: 600;
+}
+.blank_space{
+  margin: 10px;
+}
+</style>
