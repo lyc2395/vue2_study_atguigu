@@ -22,14 +22,12 @@
         <el-aside width="200px">
         <el-scrollbar>
           <el-menu :default-openeds="['1', '4']" style="background-color: #E5EAF3">
-            <el-sub-menu index="4" >
               <router-link :to="{name: 'Home'}">
                 <el-menu-item index="4-1" style="background-color: #E5EAF3">
                   <el-icon><icon-menu /></el-icon>
                   <span>主页</span>
                 </el-menu-item>
               </router-link>
-            </el-sub-menu>
             <el-sub-menu index="1">
               <template #title>
                 <el-icon><message /></el-icon>路由测试页面
