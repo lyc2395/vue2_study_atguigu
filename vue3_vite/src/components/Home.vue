@@ -20,8 +20,8 @@
       </el-header>
       <el-container>
         <el-aside width="200px">
-        <el-scrollbar>
-          <el-menu :default-openeds="['1', '4']" style="background-color: #E5EAF3">
+          <el-scrollbar>
+            <el-menu :default-openeds="['1', '4']" style="background-color: #E5EAF3">
               <router-link :to="{name: 'Home'}">
                 <el-menu-item index="4-1" style="background-color: #E5EAF3">
                   <el-icon><icon-menu /></el-icon>
@@ -37,7 +37,9 @@
                 <router-link :to="{name: 'page2'}">
                   <el-menu-item index="1-1" :router="true">指向一个最基础的路由</el-menu-item>
                 </router-link>
-                <el-menu-item index="1-2">Option 2</el-menu-item>
+                <router-link :to="{name: 'page3'}">
+                  <el-menu-item index="1-2">page3</el-menu-item>
+                </router-link>
                 <el-menu-item index="1-3">Option 3</el-menu-item>
                 <el-sub-menu index="1-4">
                   <template #title>Option4</template>
@@ -79,8 +81,8 @@
                 <el-menu-item index="3-4-1">Option 4-1</el-menu-item>
               </el-sub-menu>
             </el-sub-menu>
-          </el-menu>
-        </el-scrollbar>
+            </el-menu>
+          </el-scrollbar>
         </el-aside>
         <el-container>
           <el-main>
@@ -104,7 +106,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { Menu as IconMenu, Message, Setting } from '@element-plus/icons-vue'
-
+const isCollapse = ref(true)
 const item = {
   date: '2016-05-02',
   name: 'Tom',
