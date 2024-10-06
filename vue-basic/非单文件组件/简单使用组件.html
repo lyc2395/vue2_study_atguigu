@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <react></react>
+        <hr>
+        <angularjs></angularjs>
+    </div>
+    
+    <script type="text/javascript">
+        Vue.config.productionTip = false // 阻止vue在启动时生成生产的提示信息.
+        const angulardefects = {
+            name: 'angulardefects',
+            data(){
+                return {
+                    defects: [
+                        'learning difficulty',
+                        'stop updating',
+                        'Poor performance'
+                    ]
+                }
+            },
+            template: `
+            <div>
+                <h4>angualr defects</h4>
+                <ul>
+                  <li v-for="(item, index) in defects" :key="index">{{item}}</li>
+                </ul>
+            </div>
+            `
+        }
+
+        const angularadvantage = {
+            name: 'angularadvantage',
+            data() {
+                return {
+                    advantages: [
+                        'Bidirectional data binding',
+                        'MVC framework',
+                        'Rich built-in features'
+                    ]
+                }
+            },
+            template: `
+            <div>
+                <h4>angular advantages</h4>
+                <ul>
+                  <li v-for="(item, index) in advantages" :key="index">{{item}}</li>
+                </ul>
+            </div>
+            `
+        }
+
+        const reactadvantage = {
+            name: 'reactadvantage',
+            data() {
+                return {
+                    advantages: [
+                        'React Native',
+                        'Virtual DOM',
+                        'Unidirectional data flow',
+                        'good compatibility'
+                    ]
+                }
+            },
+            template: `
+            <div>
+                <h4>react advantages</h4>
+                <ul>
+                  <li v-for="(item, index) in advantages" :key="index">{{item}}</li>
+                </ul>
+            </div>
+            `
+        }
+
+        const reactdefects = {
+            name: 'reactdefects',
+            data(){
+                return {
+                    defects: [
+                        'Few built-in features',
+                        'Easy to lern',
+                        'Complex configuration',
+                        'Learning response ecosystem is complex'
+                    ]
+                }
+            },
+            template: `
+            <div>
+                <h4>react defects</h4>
+                <ul>
+                  <li v-for="(item, index) in defects" :key="index">{{item}}</li>
+                </ul>
+            </div>
+            `
+        }
+
+        const advantage = {
+            name: 'advantage',
+            data(){
+                return {
+                    advantage: [
+                        'JavaScript Framework',
+                        'modularization',
+                        'community support',
+                        'state management'
+                    ]
+                }
+            },
+            template: `
+            <div>
+                <h4>advantage</h4>
+                <ul>
+                  <li v-for="(item, index) in advantage" :key="index">{{item}}</li>
+                </ul>
+            </div>
+            `,
+        }
+
+
+        const reactcharacteristic = {
+            name: 'characteristic',
+            data(){
+                return {
+                    react_action: false
+                }
+            },
+            template: 
+            `
+            <div>
+                <advantage></advantage>
+                <reactadvantage></reactadvantage>
+                <reactdefects></reactdefects>
+            </div>
+            `,
+            components: {
+                advantage,
+                reactadvantage,
+                reactdefects
+            }
+        }
+
+
+        const angularcharacteristic = {
+            name: 'characteristic',
+            template: 
+            `
+            <div>
+                <advantage></advantage>
+                <angularadvantage></angularadvantage>
+                <angulardefects></angulardefects>
+            </div>
+            `,
+            components: {
+                advantage,
+                angularadvantage,
+                angulardefects
+            }
+        }
+        const react = Vue.extend({
+            name: 'react',
+            data(){
+                return {
+                    name: 'react',
+                    level: 2,
+                    characteristic: false
+                }
+            },
+            template: `
+            <div>
+              <h2>Name: {{name}}</h2>
+              <h3>Level: {{level}}</h3>
+              <button @click="showCharacteristic">Click me to view characteristic</button>
+              <reactcharacteristic v-show="characteristic"></reactcharacteristic>
+            </div>
+            `,
+            components: {
+                reactcharacteristic
+            },
+            methods: {
+                showCharacteristic(){
+                    if(this.characteristic){
+                        this.characteristic = false;
+                    }else{
+                        this.characteristic = true;
+                    }
+                }
+            },
+        })
+
+
+
+        const Angularjs  = {
+            name: 'AngularJS', //在Vue开发工具里面的名字
+            data(){
+                return {
+                    name: 'AngularJS',
+                    level: 1,
+                    characteristic: false
+                }
+            },
+            template: `
+            <div>
+              <h2>Name: {{name}}</h2>
+              <h3>Level: {{ level }}</h3>
+              <button @click="showCharacteristic">Click me to view characteristic</button>
+              <angularcharacteristic v-show="characteristic"></angularcharacteristic>
+            </div>
+            `,
+            components: {
+                angularcharacteristic
+            },
+            methods: {
+                showCharacteristic(){
+                    if(this.characteristic){
+                        this.characteristic = false;
+                    }else{
+                        this.characteristic = true;
+                    }
+                }
+            },
+        }
+
+        
+        new Vue({
+          el: '#root',
+          components: {
+            react,
+            Angularjs
+          }
+          // other options
+        });
+    </script>
+</body>
+</html>

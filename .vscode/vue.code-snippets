@@ -1,0 +1,16 @@
+{
+    "vue-instance": {
+        "prefix": "v1",
+        "scope": "html,javascript,typescript",
+        "body": [
+            "new Vue({",
+            "  el: '$1',",  // 使用 $1 定义第一个光标位置
+            "  data: {",
+            "    // your data here",
+            "  },",
+            "  // other options",
+            "});"
+        ],
+        "description": "create a vue instance ..."
+    }
+}

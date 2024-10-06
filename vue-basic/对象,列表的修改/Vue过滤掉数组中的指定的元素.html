@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>{{ name }}</h2>
+        <!-- 使用methods得方式删除用户输入得元素 -->
+        <!-- <button @click="filterItem">Filter Item</button> -->
+         <!-- 使用watch的方法删除用户输入的元素 -->
+        <input type="text" v-model:value="Item" placeholder="Please input a item ...">
+        <!-- 这个场景不适合使用computed的方法删除用户输入的元素 -->
+        <li v-for="(item, index) in characteristic" :key="index">{{ item }}</li>
+        
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false // 阻止vue在启动时生成生产的提示信息.
+        const vm = new Vue({
+          el: '#root',
+          data: {
+            name: 'vue',
+            Item: "",
+            characteristic: [
+              'reactive',
+              'simple',
+              'high performance'
+            ]
+            // your data here
+          },
+          // methods: {
+          //   filterItem(){
+          //     this.characteristic = this.characteristic.filter(
+          //       k => k != this.Item
+          //     )
+          //   }
+          // },
+          watch: {
+            Item(newValue){
+              if(this.Item){
+                  this.characteristic = this.characteristic.filter(
+                  k => k != this.Item
+              )} else{
+                this.characteristic = ['reactive', 'simple', 'high performance']
+              }
+            }
+          },
+          // other options
+        });
+    </script>
+</body>
+</html>

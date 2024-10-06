@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+</head>
+<body>
+    name: <input id='name' type="text"><br><br>
+    age: <input id="age" type="text"><br><br>
+    VueComponent Schedule Vue.function: <textarea  id="son"></textarea>
+    <script type="text/javascript">
+        function VueComponent(name, age){
+            this.name = name
+            this.age = age
+        }
+        function Vue(name, age){
+            this.name = 'test'
+            this.age = 100
+        }
+        /// 重要的内置关系展示
+        VueComponent.prototype.__proto__ = Vue.prototype
+
+        parent = new Vue('vue', 1)
+        son = new VueComponent('vuecomponent', 2)
+        Vue.prototype.share = function(){
+             return `Parent: my name is ${this.name}, my age is ${this.age}`
+        }
+
+        VueComponent.prototype.subshare = function(){
+            return `my name is ${this.name}, my age is ${this.age}`
+        }
+
+        ObjectName = document.getElementById('name')
+        ObjectAge = document.getElementById('age')
+        ObjectShow = document.getElementById('son')
+
+        ObjectName.value = parent.name
+        ObjectAge.value = parent.age
+        ObjectShow.value = son.share()
+
+
+
+
+
+        // custom = new Vue('custom', 19)
+        
+        // ObjectName.value = custom.name
+        // ObjectAge.value = custom.age
+        // VueComponent = new custom.VueComponent('module', 1)
+        // ObjectShow.value = VueComponent.subshare()
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click Event Example</title>
+    <script type="text/javascript" src="../../../js/vue.js"></script>
+</head>
+<body>
+    <style>
+        #jsAddResult {
+            font-size: 20px;
+            color: red;
+            font-weight: bold;
+        }
+
+        #apiAddResult {
+            font-size: 20px;
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+    <div id="root">
+        <h2>Click Event Example</h2><br>
+        <button id="jsAddButton">Use JS to Add Property</button><br><br>
+        <button id="apiAddButton">Use Vue API to Add Property</button><br><br>
+        <hr>
+        <br>
+        <h3>Properties</h3>
+        <ul>
+            <li v-for="(val, key) in properties" :key="key">{{ key }}: {{ val }}</li>
+        </ul>
+        <br>
+        <hr>
+        <pre>{{ properties }}</pre>
+        <br>
+        <h3 id="jsAddResult"></h3><br><br>
+        <h3 id="apiAddResult"></h3>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                properties: {
+                    type: "javascripts",
+                    ranking: "first"
+                }
+            },
+        });
+
+        // 获取 DOM 元素
+        const jsAddButton = document.getElementById('jsAddButton');
+        const apiAddButton = document.getElementById('apiAddButton');
+        const jsConclusion = document.getElementById('jsAddResult')
+        const ApiConclusion = document.getElementById('apiAddResult')
+        if (vm.properties.characteristic){
+            delete vm.properties.characteristic;
+        }
+        // 使用原生 JavaScript 添加点击事件
+        jsAddButton.addEventListener('click', function() {
+            if (vm.properties.characteristic){
+                delete vm.properties.characteristic;
+            }
+            alert(`vm.properties.characteristic: ${vm.properties.characteristic}`);
+            vm.properties.characteristic = "reactive";
+            alert(`vm.properties.characteristic: ${vm.properties.characteristic}`);
+            jsConclusion.textContent = "通过弹窗可以看到 已经添加了新的属性: characteristic, 但是页面没有任何反应"
+            console.warn(vm.properties);
+        });
+
+        apiAddButton.addEventListener('click', function() {
+            if (vm.properties.characteristic){
+                delete vm.properties.characteristic;
+            }
+            alert(`vm.properties.characteristic: ${vm.properties.characteristic}`);
+            Vue.set(vm.properties, 'characteristic', 'reactive');
+            alert(`vm.properties.characteristic: ${vm.properties.characteristic}`);
+            ApiConclusion.textContent = "通过弹窗可以看到，新的属性不但添加进去了，而且页面也同时发生了改变."
+        });
+
+    </script>
+</body>
+</html>

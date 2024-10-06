@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <input v-model="keyword" type="text" placeholder="请输入姓名 ...">
+        <button @click="sortType = 1">列表升序</button>
+        <button @click="sortType = 2">列表降序</button>
+        <button @click="sortType = 0">列表原顺序</button>
+        <li v-for="(p,index) in filterPersons">{{p.name}}-{{ p.age }}</li>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false // 阻止vue在启动时生成生产的提示信息.
+        new Vue({
+          el: '#root',
+          data: {
+            // your data here
+            keyword: "",
+            persons: [
+                {id: 1, name: '马冬梅', age: 28, sex: '女'},
+                {id: 1, name: '周冬雨', age: 18, sex: '女'},
+                {id: 1, name: '周杰伦', age: 35, sex: '女'},
+                {id: 1, name: '温兆伦', age: 32, sex: '女'}
+            ],
+            sortType: 0 // 0: 原顺序, 1: 升序, 2: 降序
+          },
+          computed: {
+            filterPersons(){
+                const arr = this.persons.filter(
+                    p => p.name.indexOf(this.keyword) != -1
+                )
+                // 判断是否需要排序
+                if(this.sortType){
+                    arr.sort(
+                        (p1,p2) => this.sortType === 1 ? p2.age - p1.age : p1.age - p2.age
+                        // (p1,p2) => {
+                        //     return this.sortType === 1 ? p2.age - p1.age : p1.age - p2.age
+                        // }
+                    )
+                    console.log(this.sortType)
+                }
+                console.log(arr.map(
+                    p => p.age
+                ))
+                return arr
+            }
+          },
+        });
+    </script>
+</body>
+</html>

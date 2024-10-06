@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初识vue</title>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        姓<input type="text" v-model="firstName"><br>
+        名<input type="text" v-model="lastName"><br>
+        全名: <span>{{fullName}}</span>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false // 阻止vue在启动时生成生产的提示信息.  
+        new Vue({
+          el: '#root',
+          data: {
+            firstName: '张',
+            lastName: '三',
+            fullName: '张-三'
+          },
+          watch: {
+            firstName(newValue){
+              setTimeout(() => {
+                this.fullName = newValue + this.lastName
+              }, 1000);
+            },
+            lastName(newValue){
+              this.fullName = this.firstName + newValue
+            }
+          }
+          // other options
+        });
+    </script>
+</body>
+</html>
