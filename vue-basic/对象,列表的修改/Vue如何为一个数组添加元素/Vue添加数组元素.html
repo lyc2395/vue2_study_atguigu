@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+    <script type="text/javascript" src="../../../js/vue.js"></script>
+</head>
+<body>
+    <style>
+        .title{
+            border: black 1px ;
+            font-size: 20px;
+            color:aquamarine;
+            font-weight: bold;
+        }
+
+        .sub-title{
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px;
+        }
+
+        .item{
+            font-size: 16px;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 20px;
+            color:cadetblue;
+        }
+
+        #jsAddItem,#VueAddItem,#setApiAddItem{
+            margin: 20px 20px 20px 20px;
+        }
+
+        #jsConclusion{
+            font-size: 25px;
+            font-weight: bold;
+            color:burlywood;
+        }
+        #vueConclusion{
+            font-size: 25px;
+            font-weight: bold;
+            color: cornflowerblue;
+        }
+        #apiConclusion{
+            font-size: 25px;
+            font-weight: bold;
+            color:cadetblue
+        }
+    </style>
+    <hr>
+    <br><br>
+    <div id="root">
+        <h2 class="title">{{ name }}</h2>
+        <h3 class="sub-title">--- characteristic</h3>
+        <li class="item" v-for="(item, index) in characteristic" :key="index">{{ item }}</li>
+    </div>
+    <hr>
+    <button id="jsAddItem">jsAddButton</button>
+    <button id="VueAddItem">VueAddButton</button>
+    <button id="setApiAddItem">SetApiButton</button>
+    <hr>
+    <br><br>
+    <h2 id="jsConclusion"></h2>
+    <h2 id="vueConclusion"></h2>
+    <h2 id="apiConclusion"></h2>
+    <script type="text/javascript">
+        Vue.config.productionTip = false // 阻止vue在启动时生成生产的提示信息.
+        const vm = new Vue({
+          el: '#root',
+          data: {
+            name: 'vue',
+            characteristic: [
+                'reactive',
+                'simple',
+                'performance',
+            ]
+          },
+          // other options
+        });
+
+        const jsButton = document.getElementById('jsAddItem');
+        const vueButton = document.getElementById('VueAddItem');
+        const jsConclusion = document.getElementById('jsConclusion');
+        const vueConclusion = document.getElementById('vueConclusion');
+        const apiButton = document.getElementById('setApiAddItem');
+        const apiConclusion = document.getElementById('apiConclusion');
+
+        jsButton.addEventListener('click', function(){
+            if(vm.characteristic[2] == 'high performance'){
+                vm.characteristic.splice(2,1,'perfomance');
+            }
+            alert(`vm.characteristic[2] = ${vm.characteristic[2]}`)
+            vm.characteristic[2] = 'high performance';
+            alert(`vm.characteristic[2] = ${vm.characteristic[2]}`)
+            jsConclusion.textContent = `原生JS: 通过弹窗我们可以知道: vm.characteristic[2] = ${vm.characteristic[2]}已经被修改了，但是页面没有任何反应`
+
+        });
+
+        vueButton.addEventListener('click', function(){
+            if(vm.characteristic[2] == 'high performance'){
+                vm.characteristic.splice(2,1,'perfomance');
+            }
+            alert(`vm.characteristic[2] = ${vm.characteristic[2]}`)
+            vm.characteristic.splice(2, 1, 'high performance');
+            alert(`vm.characteristic[2] = ${vm.characteristic[2]}`)
+            vueConclusion.textContent = `Vue方法: 通过弹窗可以知道不但 vm.characteristic[2] = ${vm.characteristic[2]} 被修改了，而且页面也发生了改变`
+
+        })
+
+        apiButton.addEventListener('click', function(){
+            if(vm.characteristic[2] == 'high performance'){
+                Vue.set(vm.characteristic, 2 ,'performance');
+            }
+            alert(`vm.characteristic[2] = ${vm.characteristic[2]}`)
+            vm.$set(vm.characteristic, 2, 'high performance');
+            alert(`vm.characteristic[2] = ${vm.characteristic[2]}`)
+            apiConclusion.textContent = `Set api: 通过弹窗我们可以知道, 不仅通过vue包装的方法splice可以响应式的更改数组, 使用set api同样可以修改响应式的修改数组`
+        })
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sessionStorage</title>
+</head>
+<body>
+    <button onclick="clickAlert()">点我弹窗</button><br>
+    <button onclick="StorageBrower()">点我session存储</button>
+    <button onclick="GetStorage()">点我获取session存储中name的值</button>
+    <button onclick="DelStorage()">点我删除session存储</button>
+    <button onclick="ClearStorage()">点我清空session存储</button>
+
+    <script>
+        function clickAlert(){
+            alert('这是弹窗')
+        };
+        function StorageBrower(){
+            const jsonStr = {
+                'name': '张三',
+                'age': 18,
+                'sex': '男'
+            }
+
+            const dream = 'rich'
+
+            sessionStorage.setItem('name', 'chunck');
+            sessionStorage.setItem('informations', JSON.stringify(jsonStr));
+            sessionStorage.setItem('dream', dream);
+        };
+        function GetStorage(){
+            const name = sessionStorage.getItem('name');
+            const informations = sessionStorage.getItem('informations');
+            
+            alert(name);
+            alert(informations);
+
+        };
+        function DelStorage(){
+            sessionStorage.removeItem('name')
+        };
+        function ClearStorage(){
+            sessionStorage.clear()
+        }
+
+    </script>
+</body>
+</html>

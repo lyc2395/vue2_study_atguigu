@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+</head>
+<body>
+    <script type="text/javascript">
+        let data = {
+            name: 'vue',
+            nick_name: 'great'
+        }
+
+        const obs = new Observer(data)
+        console.log(obs)
+        // const data = _data = obs
+        let vm = {}
+        vm._data = data = obs
+        function Observer(obj){
+            let keys = Object.keys(obj)
+            keys.forEach(
+                (k) => {
+                    Object.defineProperty(this, k, {
+                        get(){
+                            return obj[k];
+                        },
+                        set(val){
+                            console.log(`${k} changed, I will do some work, such as analysis template and generate DOM and son on ...`)
+                            obj[k] = val
+                        }
+                    })
+                }
+            )
+        }
+        console.log(data)
+
+    </script>
+</body>
+</html>

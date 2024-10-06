@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初识vue</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>Welcome to {{name}}</h2>
+        <!-- <button v-on:click="showInfo">Click the button will get informations</button> -->
+         <!-- v-on可以简写为@ -->
+        <button @click="showInfo1">Click the button will get informations(not exist any parameters)</button>
+        <button @click="showInfo2($event, 666)">Click the button will get informations again(have parameters)</button>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false // 阻止vue在启动时生成生产的提示信息.  
+        const vm = new Vue({
+          el: '#root',
+          data: {
+            name: 'Vue'
+          },
+          methods: {
+            showInfo1(event) {
+                // console.log(event.target.innerText);
+                // console.log(this === vm);
+                alert('Hello loser ...');
+            },
+            showInfo2(event, number) {
+                console.log(event.target.innerText);
+                // console.log(this === vm);
+                alert('Hello loser ' + number + ' ...');
+            }
+          }
+          // other options
+        });
+    </script>
+</body>
+</html>

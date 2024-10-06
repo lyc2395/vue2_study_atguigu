@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初识vue</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <a v-bind:href="url">百度一下</a>
+        <hr>
+        单向数据绑定: <input type="text" v-bind:value="name">
+        <hr>
+        双向数据绑定: <input type="text" v-model:value="name">
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false // 阻止vue在启动时生成生产的提示信息.
+        
+        
+        const vm = new Vue({
+          el: '#root',
+        //   data的第一种写法
+        //   data: { 
+        //         name: 'Jack',
+        //         url: "https://baidu.com"
+        //   }
+        data() {
+          return {
+            name: 'Jack',
+            url: "https://baidu.com"
+          }
+        }
+        });
+         console.log(vm);
+         
+        
+    </script>
+
+</body>
+
+</html>
